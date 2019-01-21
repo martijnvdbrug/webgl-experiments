@@ -91,11 +91,9 @@
 			true
 		],
 		"no-invalid-this": true,
-		"no-shadowed-variable": true,
 		"no-string-literal": true,
 		"no-string-throw": true,
 		"no-switch-case-fall-through": false,
-		"no-trailing-whitespace": true,
 		"no-unnecessary-callback-wrapper": true,
 		"no-unnecessary-initializer": true,
 		"no-unused-expression": true,

@@ -1,48 +1,44 @@
 import * as PIXI from 'pixi.js';
-import { Far } from './far';
-import { Scroller } from './scroller';
+import { Parallax } from './parallax/parallax';
 import Container = PIXI.Container;
 import CanvasRenderer = PIXI.CanvasRenderer;
 import WebGLRenderer = PIXI.WebGLRenderer;
+import { assets } from './asset/assets';
+import { AssetUtil } from './asset/asset-util';
 
 export class Main {
 
-  private static MIN_SCROLL_SPEED = 5;
+  private static SCROLLSPEED = 5;
 
-  // private readonly app: Application;
+  private readonly height: number;
+  private readonly width: number;
   private readonly stage: Container;
   private renderer: WebGLRenderer | CanvasRenderer;
-  private scroller: Scroller;
-  private scrollSpeed: number;
+  private parallax: Parallax;
 
   constructor() {
+    this.height = window.innerHeight;
+    this.width = window.innerWidth;
     this.stage = new PIXI.Container();
     this.renderer = PIXI.autoDetectRenderer(
-        2000,
-        384,
-        {view: document.getElementById('canvas') as HTMLCanvasElement}
+        this.width,
+        this.height,
+        {
+          view: document.getElementById('canvas') as HTMLCanvasElement,
+          transparent: true
+        }
     );
-
-    this.scrollSpeed = Main.MIN_SCROLL_SPEED;
-    this.loadSprites();
+    console.log(`Using screenheight ${this.height} and screenwidth ${this.width}`);
+    AssetUtil.loadAssets(assets).then( () => {
+      this.parallax = new Parallax(this.stage, this.height, this.width);
+      this.update();
+    });
   }
 
   update() {
-    this.scroller.moveViewportXBy(this.scrollSpeed);
+    this.parallax.moveViewportXBy(Main.SCROLLSPEED);
     this.renderer.render(this.stage);
     requestAnimationFrame(() => this.update());
   }
 
-  loadSprites() {
-    const loader = PIXI.loader;
-    loader.add('bg-far', 'assets/bg-far.png');
-    loader.once('complete', () => this.spritesLoaded());
-    loader.load();
-  }
-
-  spritesLoaded() {
-    console.log('loaded sprites');
-    this.scroller = new Scroller(this.stage);
-    this.update();
-  }
 }
