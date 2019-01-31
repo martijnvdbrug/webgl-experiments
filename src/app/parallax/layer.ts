@@ -4,7 +4,7 @@ export class Layer extends PIXI.extras.TilingSprite {
 
   private readonly deltaX: number;
 
-  constructor(name: string, width: number, height: number, delta) {
+  constructor(name: string, height: number, width: number, delta: number) {
     const texture = PIXI.loader.resources[name].texture;
     const scale = AssetUtil.getScale(width, texture.width, height, texture.height);
     super(texture, texture.width * scale, texture.height * scale);
