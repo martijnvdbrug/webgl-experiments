@@ -1,3 +1,4 @@
+import * as PIXI from 'pixi.js';
 import { AssetUtil } from '../asset/asset-util';
 
 export class Layer extends PIXI.extras.TilingSprite {

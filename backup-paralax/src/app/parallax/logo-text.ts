@@ -1,3 +1,4 @@
+import * as PIXI from 'pixi.js';
 export class LogoText extends PIXI.Text {
 
   constructor(text: string, height: number, width: number) {

@@ -1,72 +1,27 @@
-const path = require('path');
-const webpack = require('webpack');
-const argv = require('yargs').argv;
-const webpackDevServer = require('webpack-dev-server'); 
-const CopyWebpackPlugin = require('copy-webpack-plugin'); 
-
-const ROOT = path.resolve(__dirname, "src");
-const APP_PATH = path.join(ROOT, "index.ts");
-const BUILD_PATH = path.resolve(__dirname, "www");
-
-let tslintAutofix;
-if (argv && argv.env) {
-	tslintAutofix = argv.env.fix;
-}
+var path = require("path");
 
 module.exports = {
-	entry: APP_PATH,
-	devtool: "source-map",
-	output: {
-		path: path.join(BUILD_PATH, "/js/"),
-		filename: 'bundle.js'
-	},
-	resolve: {
-		extensions: ['.ts', '.js'],
-		modules: [path.resolve(path.join(__dirname, 'node_modules'))]
-	},
-	module: {
-		rules: [{
-				test: /\.ts$/,
-				loader: 'tslint-loader',
-				exclude: /(node_modules)/,
-				enforce: 'pre'
-			},
-			{
-				test: /\.ts$/,
-				exclude: /(node_modules)/,
-				loaders: ['awesome-typescript-loader']
-			},
-			{
-				test: /\.png$/,
-				exclude: /(node_modules)/,
-				loaders: ['url-loader']
-			}
-		]
-	},
-	plugins: [
-		new webpack.optimize.UglifyJsPlugin({
-			mangle: {
-				except: ['$super', '$', 'exports', 'require']
-			},
-			sourceMap: true
-		}),
-		new CopyWebpackPlugin([
-			{ from:  path.join(ROOT, "index.html"), to: path.join(BUILD_PATH, "index.html")},
-            { from:  path.join(ROOT, "assets"), to: path.join(BUILD_PATH, "assets")}
-		]),
-		new webpack.HotModuleReplacementPlugin(),
-		new webpack.LoaderOptionsPlugin({
-			options: {
-				tslint: {
-					emitErrors: true,
-					failOnHint: true,
-					fix: tslintAutofix
-				}
-			}
-		})
-	],
-	devServer: {
-		hot: true,
-		contentBase: BUILD_PATH
-	}
+    mode: 'development',
+    // entry: ['webpack/hot/dev-server' , './src/index.ts'],
+    entry: ['./src/index.ts'],
+    output: {
+        filename: "../public/bundle.js"
+    },
+    resolve: {
+        extensions: [".webpack.js", ".web.js", ".ts", ".tsx", ".js", ".jsx"]
+    },
+    module: {
+        rules: [
+            {
+                test: /\.tsx?$/,
+                use: 'ts-loader',
+                exclude: /node_modules/
+            }
+        ]
+    },
+    devServer: {
+        contentBase: path.join(__dirname, 'public'),
+        compress: true,
+        port: 9000
+    }
 };

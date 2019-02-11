@@ -1,3 +1,4 @@
+import * as PIXI from 'pixi.js';
 import Container = PIXI.Container;
 import { Layer } from './layer';
 import { assets } from '../asset/assets';
@@ -23,7 +24,7 @@ export class Parallax {
 
   addSprites(): void {
     const stars = new Layer(assets.stars.id, this.height, this.width, 0.1);
-    const text = new LogoText('FARLEY', this.height, this.width);
+    const text = new LogoText('\nFARLEY', this.height, this.width);
     const silhouette = new Layer(assets.silhouette.id, this.height, this.width, 0.05);
     this.moveableLayers.push(stars);
     this.moveableLayers.push(silhouette);
