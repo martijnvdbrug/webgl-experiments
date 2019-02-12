@@ -1,10 +1,11 @@
 import * as PIXI from 'pixi.js';
-import { Parallax } from './parallax/parallax';
+import { assets } from './asset/assets';
+import { AssetUtil } from './asset/asset-util';
+import { Background } from './components/background';
 import Container = PIXI.Container;
 import CanvasRenderer = PIXI.CanvasRenderer;
 import WebGLRenderer = PIXI.WebGLRenderer;
-import { assets } from './asset/assets';
-import { AssetUtil } from './asset/asset-util';
+import { LogoText } from './components/logo-text';
 
 export class Main {
 
@@ -14,7 +15,6 @@ export class Main {
   private readonly width: number;
   private readonly stage: Container;
   private renderer: WebGLRenderer | CanvasRenderer;
-  private parallax: Parallax;
 
   constructor() {
     this.height = window.innerHeight;
@@ -29,16 +29,21 @@ export class Main {
         }
     );
     console.log(`Using screenheight ${this.height} and screenwidth ${this.width}`);
-    AssetUtil.loadAssets(assets).then( () => {
-      this.parallax = new Parallax(this.stage, this.height, this.width);
-      this.update();
+    AssetUtil.loadAssets(assets).then(() => {
+      this.makeStage();
+      PIXI.ticker.shared.add(this.update);
     });
   }
 
-  update() {
-    this.parallax.moveViewportXBy(Main.SCROLLSPEED);
+  makeStage() {
+    const background = new Background(assets.background.id, this.height, this.width);
+    // const farley = new LogoText('\n FARLEY', this.height, this.width);
+    this.stage.addChild(background);
+    // this.stage.addChild(farley);
     this.renderer.render(this.stage);
-    requestAnimationFrame(() => this.update());
+  }
+
+  update(time: number) {
   }
 
 }

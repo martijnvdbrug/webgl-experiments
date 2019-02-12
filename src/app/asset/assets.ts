@@ -1,10 +1,6 @@
 export const assets = {
-  stars: {
-    id: 'stars',
-    path: 'assets/stars.jpeg'
-  },
-  silhouette: {
-    id: 'silhouette',
-    path: 'assets/silhouette.png'
+  background: {
+    id: 'background',
+    path: '/assets/background.jpg'
   }
 };

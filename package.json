@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "Simplest Typescript webpack loader, ever.",
   "scripts": {
-    "serve": "yarn webpack-dev-server --hot",
-    "build": "yarn webpack"
+    "dev-server": "yarn webpack-dev-server --hot",
+    "build": "yarn webpack -w",
+    "serve": "concurrently --kill-others \"yarn build\" \"yarn dev-server\""
   },
   "license": "MIT",
   "devDependencies": {

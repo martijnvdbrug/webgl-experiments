@@ -1,3 +1,4 @@
+import * as PIXI from 'pixi.js';
 import { assets } from './assets';
 
 export class AssetUtil {
@@ -10,11 +11,9 @@ export class AssetUtil {
         PIXI.loader.add(asset.id, asset.path);
       });
       PIXI.loader.once('complete', () => {
-        console.log('Loaded sprites');
         resolve();
       });
-      PIXI.loader.on('error', () => {
-        console.error(`Error loading sprites`);
+      PIXI.loader.on('error', err => {
         reject(`Error loading sprites`);
       });
       PIXI.loader.load();
