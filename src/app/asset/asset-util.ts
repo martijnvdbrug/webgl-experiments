@@ -1,5 +1,6 @@
 import * as PIXI from 'pixi.js';
 import { assets } from './assets';
+import WebFont = require('webfontloader');
 
 export class AssetUtil {
 
@@ -25,5 +26,19 @@ export class AssetUtil {
     const heightScale = screenHeight / textureHeight;
     return widthScale > heightScale ? widthScale : heightScale; // return whichever is greatest
   }
+
+
+  static loadFonts(fonts: string[]): Promise<void> {
+    return new Promise((resolve, reject) => {
+      WebFont.load({
+        google: {
+          families: fonts
+        },
+        active: resolve,
+        inactive: reject
+      });
+    });
+  }
+
 
 }

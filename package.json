@@ -1,7 +1,7 @@
 {
-  "name": "simplest-typescript-webpack-boilerplate",
+  "name": "webgl-experiments",
   "version": "1.0.0",
-  "description": "Simplest Typescript webpack loader, ever.",
+  "description": "WebGL experiments",
   "scripts": {
     "dev-server": "yarn webpack-dev-server --hot",
     "build": "yarn webpack -w",
@@ -10,6 +10,7 @@
   "license": "MIT",
   "devDependencies": {
     "@types/pixi.js": "^4.8.6",
+    "@types/webfontloader": "^1.6.29",
     "ts-loader": "^4.0.0",
     "tslint": "^5.12.1",
     "typescript": "^3.3.3",
@@ -18,6 +19,8 @@
     "webpack-dev-server": "^3.1.14"
   },
   "dependencies": {
-    "pixi.js": "^4.8.5"
+    "@pixi/filter-glitch": "^2.7.0",
+    "pixi.js": "^4.8.5",
+    "webfontloader": "^1.6.28"
   }
 }
