@@ -4,3 +4,4 @@ npm
 *.log
 .idea
 bundle.js
+*/**/bundle.js

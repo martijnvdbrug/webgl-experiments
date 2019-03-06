@@ -5,12 +5,14 @@
   "scripts": {
     "dev-server": "yarn webpack-dev-server --hot",
     "build": "yarn webpack -w",
-    "serve": "concurrently --kill-others \"yarn build\" \"yarn dev-server\""
+    "serve": "concurrently --kill-others \"yarn build\" \"yarn dev-server\"",
+    "serve:farley": "export PROJECT=farley-banner && concurrently --kill-others \"yarn build\" \"yarn dev-server\""
   },
   "license": "MIT",
   "devDependencies": {
     "@types/pixi.js": "^4.8.6",
     "@types/webfontloader": "^1.6.29",
+    "concurrently": "^4.1.0",
     "ts-loader": "^4.0.0",
     "tslint": "^5.12.1",
     "typescript": "^3.3.3",
