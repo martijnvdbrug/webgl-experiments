@@ -6,7 +6,8 @@
     "dev-server": "yarn webpack-dev-server --hot",
     "build": "yarn webpack -w",
     "serve": "concurrently --kill-others \"yarn build\" \"yarn dev-server\"",
-    "serve:farley": "export PROJECT=farley-banner && concurrently --kill-others \"yarn build\" \"yarn dev-server\""
+    "serve:farley": "export PROJECT=farley-banner && concurrently --kill-others \"yarn build\" \"yarn dev-server\"",
+    "serve:hello": "export PROJECT=threejs-hello-world && concurrently --kill-others \"yarn build\" \"yarn dev-server\""
   },
   "license": "MIT",
   "devDependencies": {
@@ -23,6 +24,7 @@
   "dependencies": {
     "@pixi/filter-glitch": "^2.7.0",
     "pixi.js": "^4.8.5",
+    "three": "^0.102.1",
     "webfontloader": "^1.6.28"
   }
 }
