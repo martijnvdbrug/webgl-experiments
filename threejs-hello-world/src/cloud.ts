@@ -8,19 +8,19 @@ export class Cloud extends Mesh {
 
   constructor() {
     const geo = new Geometry();
-    const tuft1 = new SphereGeometry(1.5, 7, 8);
-    tuft1.translate(-2, 0, 0);
+    const tuft1 = new SphereGeometry(1, 7, 8);
+    tuft1.translate(-1.5, 0, 0);
     geo.merge(tuft1);
 
-    const tuft2 = new SphereGeometry(1.5, 7, 8);
-    tuft2.translate(2, 0, 0);
+    const tuft2 = new SphereGeometry(1, 7, 8);
+    tuft2.translate(1.5, 0, 0);
     geo.merge(tuft2);
 
-    const tuft3 = new SphereGeometry(2.0, 7, 8);
+    const tuft3 = new SphereGeometry(1.5, 7, 8);
     tuft3.translate(0, 0, 0);
     geo.merge(tuft3);
-    GeoUtil.jitter(geo, 0.15);
-    GeoUtil.chopBottom(geo, -0.5);
+    GeoUtil.jitter(geo, 0.05);
+    GeoUtil.chopBottom(geo, -0.3);
     geo.computeFlatVertexNormals();
 
     const material = new MeshLambertMaterial({
