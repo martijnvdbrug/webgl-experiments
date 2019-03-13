@@ -1,3 +1,4 @@
 import { CloudScene } from './cloud-scene';
 
-new CloudScene();
+const cloudScene = new CloudScene();
+console.log(cloudScene);

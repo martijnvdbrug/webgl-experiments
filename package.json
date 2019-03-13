@@ -25,6 +25,7 @@
     "@pixi/filter-glitch": "^2.7.0",
     "pixi.js": "^4.8.5",
     "three": "^0.102.1",
+    "three-gltf-exporter": "^0.0.1",
     "webfontloader": "^1.6.28"
   }
 }

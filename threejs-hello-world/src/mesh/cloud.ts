@@ -1,7 +1,8 @@
 import { Geometry, Material, Mesh, MeshLambertMaterial, SphereGeometry } from 'three';
-import { GeoUtil } from './geo-util';
+import { GeoUtil } from '../util/geo-util';
+import { RotatingMesh } from './rotating-mesh';
 
-export class Cloud extends Mesh {
+export class Cloud extends RotatingMesh {
 
   geo: Geometry;
   material: Material;
@@ -32,9 +33,4 @@ export class Cloud extends Mesh {
     this.geo = geo;
     this.material = material;
   }
-
-  rotate(angle: number){
-    this.rotation.y += angle;
-  }
-
 }

@@ -3640,6 +3640,11 @@ terser@^3.16.1:
     source-map "~0.6.1"
     source-map-support "~0.5.9"
 
+three-gltf-exporter@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.npmjs.org/three-gltf-exporter/-/three-gltf-exporter-0.0.1.tgz#e04122c144108bffad963f27dfcb62115f4b8a9e"
+  integrity sha512-46CZ8c5I7nSa6TyNKjUkx2AZPNJ2K2jxGTWNtGLrxF+UZaJ+NGnjLFfPvNFIj38oPsNXJ+SPyYNZRyCmp3xLdg==
+
 three@^0.102.1:
   version "0.102.1"
   resolved "https://registry.npmjs.org/three/-/three-0.102.1.tgz#fc08b6b11860cf59e8cd45b7e90e34d1d1a8cbd6"
