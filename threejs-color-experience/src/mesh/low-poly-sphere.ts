@@ -1,17 +1,16 @@
 import { Geometry, Material, Mesh, MeshLambertMaterial, SphereGeometry } from 'three';
 import { GeoUtil } from '../util/geo-util';
 import { RotatingMesh } from './rotating-mesh';
-import { LowPolyBallOptions } from './interface/low-poly-ball-options';
+import { LowPolySphereOptions } from './interface/low-poly-sphere-options';
 
-export class LowPolyBall extends RotatingMesh {
+export class LowPolySphere extends RotatingMesh {
 
   geo: Geometry;
   material: Material;
 
-  constructor(options: LowPolyBallOptions) {
+  constructor(options: LowPolySphereOptions) {
 
     const geo = new SphereGeometry(1, 7, 8);
-    //geo.translate(options.x, options.y, options.z);
 
     GeoUtil.jitter(geo, 0.05);
     geo.computeFlatVertexNormals();

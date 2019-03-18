@@ -7,10 +7,11 @@ import {
   WebGLRenderer
 } from 'three';
 import { Cloud } from './mesh/cloud';
-import { LowPolyBall } from './mesh/low-poly-ball';
+import { LowPolySphere } from './mesh/low-poly-sphere';
 import { RotatingMesh } from './mesh/rotating-mesh';
 import { DownloadUtil } from './util/download-util';
 import { MeshManager } from './mesh/util/mesh-manager';
+import { LowPolyGradientSphere } from './mesh/low-poly-gradient-sphere';
 
 export class ColorScene extends Scene{
 
@@ -29,10 +30,9 @@ export class ColorScene extends Scene{
     this.camera.position.z = 10;
     this.camera.rotation.x = -0.5;
 
-    this.meshes = MeshManager.getMeshes(LowPolyBall);
-    // this.add(...this.meshes);
+    this.meshes = MeshManager.getLowPolyMeshes();
+    this.add(...this.meshes);
 
-    this.meshes.forEach(m => this.add(m));
 
     // Lights
     this.lights.push(new AmbientLight(0xffffff, 0.3));

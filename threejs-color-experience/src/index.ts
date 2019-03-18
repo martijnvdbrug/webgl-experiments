@@ -1,3 +1,3 @@
 import { ColorScene } from './color-scene';
 
-const cloudScene = new ColorScene();
+const colorScene = new ColorScene();
