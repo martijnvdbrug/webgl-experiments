@@ -31,7 +31,7 @@ export class GradientMaterial extends ShaderMaterial {
       gl_FragColor = vec4(mix(color1, color2, vUv.y), 1.0);
     }
   `,
-      wireframe: true,
+      wireframe: false,
       flatShading: true
     },
         );
