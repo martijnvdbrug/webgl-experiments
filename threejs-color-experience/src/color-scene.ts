@@ -10,11 +10,12 @@ import { Cloud } from './mesh/cloud';
 import { LowPolyBall } from './mesh/low-poly-ball';
 import { RotatingMesh } from './mesh/rotating-mesh';
 import { DownloadUtil } from './util/download-util';
+import { MeshManager } from './mesh/util/mesh-manager';
 
-export class CloudScene extends Scene{
+export class ColorScene extends Scene{
 
   private readonly renderer: WebGLRenderer;
-  private readonly mesh: RotatingMesh;
+  private readonly meshes: RotatingMesh[] = [];
   private readonly camera: Camera;
   private readonly lights: Light[] = [];
 
@@ -22,17 +23,16 @@ export class CloudScene extends Scene{
 
     super();
 
-    this.camera = new PerspectiveCamera(100, window.innerWidth / window.innerHeight, 0.01, 1000);
-    this.camera.position.z = 4;
+    this.camera = new PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.01, 150);
+    this.camera.position.x = 0;
+    this.camera.position.y = 10;
+    this.camera.position.z = 10;
+    this.camera.rotation.x = -0.5;
 
-    // this.mesh = new Cloud();
-    this.mesh = new LowPolyBall({
-      color: '#ff07e0',
-      x: 0,
-      y: 0,
-      z: 0
-    });
-    this.add(this.mesh);
+    this.meshes = MeshManager.getMeshes(LowPolyBall);
+    // this.add(...this.meshes);
+
+    this.meshes.forEach(m => this.add(m));
 
     // Lights
     this.lights.push(new AmbientLight(0xffffff, 0.3));
@@ -47,12 +47,12 @@ export class CloudScene extends Scene{
   }
 
   download() {
-    DownloadUtil.downloadScene([this, this.camera, this.mesh]).catch(err => console.error(err));
+    DownloadUtil.downloadScene([this, this.camera, ...this.meshes]).catch(err => console.error(err));
   }
 
   render() {
     requestAnimationFrame(this.render.bind(this));
-    this.mesh.rotate(0.01);
+   //this.meshes.forEach(m => m.rotate(0.01));
     this.renderer.render(this, this.camera);
   }
 

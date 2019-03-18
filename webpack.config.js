@@ -10,7 +10,7 @@ module.exports = {
     // entry: ['webpack/hot/dev-server' , './src/index.ts'],
     entry: [`./${project}/src/index.ts`],
     output: {
-        filename: `../${project}/public/bundle.js`
+        filename: `${project}/../docs/bundle.js`
     },
     resolve: {
         extensions: [".webpack.js", ".web.js", ".ts", ".tsx", ".js", ".jsx"]
@@ -25,7 +25,7 @@ module.exports = {
         ]
     },
     devServer: {
-        contentBase: path.join(__dirname, `${project}/public`),
+        contentBase: path.join(__dirname, `${project}/../docs`),
         compress: true,
         port: 9000
     }

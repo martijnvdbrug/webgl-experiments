@@ -1,8 +1,8 @@
 import { Mesh } from 'three';
 
-export class RotatingMesh extends Mesh{
+export class RotatingMesh extends Mesh {
 
-  rotate(angle: number){
+  rotate(angle: number) {
     this.rotation.y += angle;
   }
 

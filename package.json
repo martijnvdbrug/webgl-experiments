@@ -7,7 +7,7 @@
     "build": "yarn webpack -w",
     "serve": "concurrently --kill-others \"yarn build\" \"yarn dev-server\"",
     "serve:farley": "export PROJECT=farley-banner && concurrently --kill-others \"yarn build\" \"yarn dev-server\"",
-    "serve:hello": "export PROJECT=threejs-hello-world && concurrently --kill-others \"yarn build\" \"yarn dev-server\""
+    "serve:color": "export PROJECT=threejs-color-experience && concurrently --kill-others \"yarn build\" \"yarn dev-server\""
   },
   "license": "MIT",
   "devDependencies": {
