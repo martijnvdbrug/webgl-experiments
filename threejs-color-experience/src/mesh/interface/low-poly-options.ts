@@ -1,4 +1,4 @@
-export interface LowPolySphereOptions {
+export interface LowPolyOptions {
   color: string
   x: number
   y: number

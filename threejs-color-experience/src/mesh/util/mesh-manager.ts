@@ -1,40 +1,52 @@
 import { RotatingMesh } from '../rotating-mesh';
-import { LowPolySphere } from '../low-poly-sphere';
-import { LowPolyGradientSphere } from '../low-poly-gradient-sphere';
 
 export class MeshManager {
 
-
-  static getLowPolyMeshes(): LowPolySphere[] {
-    const meshes: LowPolySphere[] = [];
+  // Creates meshes based on given object
+  static createMeshes(mesh1: new (...args) => RotatingMesh, mesh2: new (...args) => RotatingMesh): RotatingMesh[] {
+    const meshes: RotatingMesh[] = [];
     // https://coolors.co/540d6e-ee4266-0fff95-ffd23f-0ead69
-    meshes.push(new LowPolySphere({
+    meshes.push(new mesh1({
       color: '#0FFF95',
-      x: 0,
+      x: -1,
       y: 0,
-      z: 1
+      z: 0
     }));
 
-    meshes.push(new LowPolySphere({
+    meshes.push(new mesh1({
       color: '#FFD23F',
-      x: 2,
+      x: 1,
       y: 0,
-      z: 1
+      z: 0
     }));
 
-    meshes.push(new LowPolySphere({
+    meshes.push(new mesh1({
       color: '#0EAD69',
-      x: 0,
+      x: -1,
       y: 0,
-      z: -1
+      z: -2
     }));
 
-    meshes.push(new LowPolyGradientSphere({
-      color1: '#0EAD69',
-      color2: '#0EAD69',
-      x: 2,
+    meshes.push(new mesh1({
+      color: '#ffffff',
+      x: 1,
       y: 0,
-      z: -1
+      z: -4
+    }));
+
+    meshes.push(new mesh1({
+      color: '#282828',
+      x: -1,
+      y: 0,
+      z: -4
+    }));
+
+    meshes.push(new mesh2({
+      color1: '#540D6E',
+      color2: '#EE4266',
+      x: 1,
+      y: 0,
+      z: -2
     }));
 
     return meshes;

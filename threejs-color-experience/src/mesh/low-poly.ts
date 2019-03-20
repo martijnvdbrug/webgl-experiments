@@ -1,18 +1,19 @@
-import { Geometry, Material, Mesh, MeshLambertMaterial, SphereGeometry } from 'three';
-import { GeoUtil } from '../util/geo-util';
+import { Geometry, Material, MeshLambertMaterial, OctahedronGeometry } from 'three';
 import { RotatingMesh } from './rotating-mesh';
-import { LowPolySphereOptions } from './interface/low-poly-sphere-options';
+import { LowPolyOptions } from './interface/low-poly-options';
 
-export class LowPolySphere extends RotatingMesh {
+export class LowPoly extends RotatingMesh {
 
   geo: Geometry;
   material: Material;
 
-  constructor(options: LowPolySphereOptions) {
+  constructor(options: LowPolyOptions) {
 
-    const geo = new SphereGeometry(1, 7, 8);
+    // const geo = new SphereGeometry(1, 7, 8);
+    const geo = new OctahedronGeometry(1, 2);
 
-    GeoUtil.jitter(geo, 0.05);
+
+    // GeoUtil.jitter(geo, 0.05);
     geo.computeFlatVertexNormals();
 
     const material = new MeshLambertMaterial({
