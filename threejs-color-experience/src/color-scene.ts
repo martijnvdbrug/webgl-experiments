@@ -31,9 +31,9 @@ export class ColorScene extends Scene {
     this.camera.position.z = 15;
     this.camera.rotation.x = -0.6;
 
-    // this.meshes = MeshManager.createMeshes(LowPoly);
+    this.meshes = MeshManager.createMeshes(LowPoly);
     // this.meshes = MeshManager.createMeshes(CanRing);
-    this.meshes = MeshManager.createMeshes(ColorSphere);
+    // this.meshes = MeshManager.createMeshes(ColorSphere);
     this.add(...this.meshes);
 
 
