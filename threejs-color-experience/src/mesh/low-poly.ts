@@ -1,13 +1,13 @@
 import { Geometry, Material, MeshLambertMaterial, OctahedronGeometry } from 'three';
-import { RotatingMesh } from './rotating-mesh';
-import { LowPolyOptions } from './interface/low-poly-options';
+import { ColorMesh } from './color-mesh';
+import { ColorOptions } from './interface/color-options';
 
-export class LowPoly extends RotatingMesh {
+export class LowPoly extends ColorMesh {
 
   geo: Geometry;
   material: Material;
 
-  constructor(options: LowPolyOptions) {
+  constructor(options: ColorOptions) {
 
     // const geo = new SphereGeometry(1, 7, 8);
     const geo = new OctahedronGeometry(1, 2);

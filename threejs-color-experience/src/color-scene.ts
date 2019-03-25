@@ -1,22 +1,23 @@
 import {
   AmbientLight,
   Camera,
-  DirectionalLight, Light,
+  DirectionalLight,
+  Light,
   PerspectiveCamera,
   Scene,
   WebGLRenderer
 } from 'three';
-import { Cloud } from './mesh/cloud';
 import { LowPoly } from './mesh/low-poly';
-import { RotatingMesh } from './mesh/rotating-mesh';
+import { ColorMesh } from './mesh/color-mesh';
 import { DownloadUtil } from './util/download-util';
 import { MeshManager } from './mesh/util/mesh-manager';
-import { LowPolyGradient } from './mesh/low-poly-gradient';
+import { CanRing } from './mesh/can-ring';
+import { ColorSphere } from './mesh/color-sphere';
 
-export class ColorScene extends Scene{
+export class ColorScene extends Scene {
 
   private readonly renderer: WebGLRenderer;
-  private readonly meshes: RotatingMesh[] = [];
+  private readonly meshes: ColorMesh[] = [];
   private readonly camera: Camera;
   private readonly lights: Light[] = [];
 
@@ -30,7 +31,9 @@ export class ColorScene extends Scene{
     this.camera.position.z = 15;
     this.camera.rotation.x = -0.6;
 
-    this.meshes = MeshManager.createMeshes(LowPoly, LowPolyGradient);
+    // this.meshes = MeshManager.createMeshes(LowPoly);
+    // this.meshes = MeshManager.createMeshes(CanRing);
+    this.meshes = MeshManager.createMeshes(ColorSphere);
     this.add(...this.meshes);
 
 
@@ -52,11 +55,11 @@ export class ColorScene extends Scene{
 
   render() {
     requestAnimationFrame(this.render.bind(this));
-   //this.meshes.forEach(m => m.rotate(0.01));
+    // this.meshes.forEach(m => m.rotate(0.01));
     this.renderer.render(this, this.camera);
   }
 
-  getRenderer(): WebGLRenderer{
+  getRenderer(): WebGLRenderer {
     const renderer = new WebGLRenderer({
       antialias: true,
       canvas: document.getElementById('canvas') as HTMLCanvasElement

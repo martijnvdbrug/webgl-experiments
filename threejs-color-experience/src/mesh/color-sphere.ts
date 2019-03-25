@@ -1,8 +1,8 @@
-import { Geometry, Material, MeshLambertMaterial, OctahedronGeometry, TorusGeometry } from 'three';
+import { Geometry, Material, MeshLambertMaterial, SphereGeometry } from 'three';
 import { ColorMesh } from './color-mesh';
 import { ColorOptions } from './interface/color-options';
 
-export class CanRing extends ColorMesh {
+export class ColorSphere extends ColorMesh {
 
   geo: Geometry;
   material: Material;
@@ -10,7 +10,7 @@ export class CanRing extends ColorMesh {
   constructor(options: ColorOptions) {
 
     // const geo = new SphereGeometry(1, 7, 8);
-    const geo = new TorusGeometry( 0.5, 0.35, 50, 50 );
+    const geo = new SphereGeometry(1, 32, 32);
 
 
     // GeoUtil.jitter(geo, 0.05);

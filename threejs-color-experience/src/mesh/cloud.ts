@@ -1,8 +1,8 @@
 import { Geometry, Material, Mesh, MeshLambertMaterial, SphereGeometry } from 'three';
 import { GeoUtil } from '../util/geo-util';
-import { RotatingMesh } from './rotating-mesh';
+import { ColorMesh } from './color-mesh';
 
-export class Cloud extends RotatingMesh {
+export class Cloud extends ColorMesh {
 
   geo: Geometry;
   material: Material;

@@ -1,6 +1,6 @@
 import { Geometry, Material, Mesh } from 'three';
 
-export class RotatingMesh extends Mesh {
+export class ColorMesh extends Mesh {
 
   constructor(geo: Geometry, mat: Material) {
     super(geo, mat);
