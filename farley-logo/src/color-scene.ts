@@ -1,17 +1,18 @@
 import {
   AmbientLight,
   Camera,
-  DirectionalLight, DoubleSide,
-  GridHelper,
-  Light, Mesh, MeshBasicMaterial,
-  PerspectiveCamera, Plane, PlaneGeometry, Raycaster,
-  Scene, Vector2,
+  DirectionalLight,
+  Light,
+  PerspectiveCamera,
+  Scene,
   WebGLRenderer
 } from 'three';
+import { LowPoly } from './mesh/low-poly';
 import { ColorMesh } from './mesh/color-mesh';
 import { DownloadUtil } from './util/download-util';
+import { MeshManager } from './mesh/util/mesh-manager';
+import { CanRing } from './mesh/can-ring';
 import { ColorSphere } from './mesh/color-sphere';
-import { DragControls } from './drag-controls';
 
 export class ColorScene extends Scene {
 
@@ -19,10 +20,6 @@ export class ColorScene extends Scene {
   private readonly meshes: ColorMesh[] = [];
   private readonly camera: Camera;
   private readonly lights: Light[] = [];
-  private readonly controls: DragControls;
-
-  raycaster = new Raycaster();
-  mouse = new Vector2();
 
   constructor() {
 
@@ -34,15 +31,9 @@ export class ColorScene extends Scene {
     this.camera.position.z = 15;
     this.camera.rotation.x = -0.6;
 
-    // this.meshes = MeshManager.createMeshes(LowPoly);
-    //this.meshes = MeshManager.createMeshes(CanRing);
+    this.meshes = MeshManager.createMeshes(LowPoly);
+    // this.meshes = MeshManager.createMeshes(CanRing);
     // this.meshes = MeshManager.createMeshes(ColorSphere);
-    this.meshes.push(new ColorSphere({
-      color: '#0FFF95',
-      x: -1,
-      y: 0,
-      z: 0
-    }));
     this.add(...this.meshes);
 
 
@@ -54,17 +45,6 @@ export class ColorScene extends Scene {
     this.lights[2].position.set(-3, -1, 0).normalize();
     this.add(...this.lights);
 
-    // Controls
-    const geo = new PlaneGeometry( 5, 20, 32 );
-    geo.rotateX(-1.57079633);
-    const material = new MeshBasicMaterial( {color: 0xffff00, side: DoubleSide} );
-    const plane = new Plane();
-    this.controls = new DragControls(this.meshes, this.camera, plane);
-
-    // Grid
-    this.add(new GridHelper(10, 10));
-
-    // Render
     this.renderer = this.getRenderer();
     this.render();
   }
@@ -75,8 +55,8 @@ export class ColorScene extends Scene {
 
   render() {
     requestAnimationFrame(this.render.bind(this));
-    this.renderer.render(this, this.camera);
     // this.meshes.forEach(m => m.rotate(0.01));
+    this.renderer.render(this, this.camera);
   }
 
   getRenderer(): WebGLRenderer {
