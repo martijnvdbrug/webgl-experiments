@@ -11,7 +11,7 @@ module.exports = {
     // entry: ['webpack/hot/dev-server' , './src/index.ts'],
     entry: [`./${project}/src/index.ts`],
     output: {
-        filename: `${project}/public/bundle.js`
+        filename: `../${project}/public/bundle.js`
     },
     resolve: {
         extensions: [".webpack.js", ".web.js", ".ts", ".tsx", ".js", ".jsx"]

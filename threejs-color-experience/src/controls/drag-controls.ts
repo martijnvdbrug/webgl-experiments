@@ -16,11 +16,12 @@ export class DragControls {
     this.plane = plane;
     this.objects.push(plane);
 
-    window.addEventListener('mousemove', this.onMouseMove.bind(this), false);
-    window.addEventListener('touchmove', this.onMouseMove.bind(this), false);
-    window.addEventListener('mousedown', this.onMouseDown.bind(this), false);
-    window.addEventListener('touchstart', this.onMouseDown.bind(this), false);
-    window.addEventListener('touchend', this.onMouseUp.bind(this), false);
+    const element = document.getElementById('canvas'); // Or window
+    element.addEventListener('mousemove', this.onMouseMove.bind(this), false);
+    element.addEventListener('touchmove', this.onMouseMove.bind(this), false);
+    element.addEventListener('mousedown', this.onMouseDown.bind(this), false);
+    element.addEventListener('touchstart', this.onMouseDown.bind(this), false);
+    element.addEventListener('touchend', this.onMouseUp.bind(this), false);
   }
 
   onMouseMove(event) {
@@ -43,7 +44,6 @@ export class DragControls {
   }
 
   onMouseDown(event) {
-
     this.updateCursorPosition(event);
 
     this.raycaster.setFromCamera(this.mouse, this.camera);

@@ -11,7 +11,7 @@ import {
 import { ColorMesh } from './mesh/color-mesh';
 import { DownloadUtil } from './util/download-util';
 import { ColorSphere } from './mesh/color-sphere';
-import { DragControls } from './drag-controls';
+import { DragControls } from './controls/drag-controls';
 
 export class ColorScene extends Scene {
 
