@@ -6,13 +6,12 @@ if (!project) {
 }
 
 
-console.log(`${project}/../docs/bundle.js`);
 module.exports = {
     mode: 'development',
     // entry: ['webpack/hot/dev-server' , './src/index.ts'],
     entry: [`./${project}/src/index.ts`],
     output: {
-        filename: `../docs/bundle.js`
+        filename: `${project}/public/bundle.js`
     },
     resolve: {
         extensions: [".webpack.js", ".web.js", ".ts", ".tsx", ".js", ".jsx"]
@@ -27,7 +26,7 @@ module.exports = {
         ]
     },
     devServer: {
-        contentBase: path.join(__dirname, `${project}/../docs`),
+        contentBase: path.join(__dirname, `${project}/public`),
         compress: true,
         port: 9000
     }

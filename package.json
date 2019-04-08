@@ -6,9 +6,9 @@
     "dev-server": "yarn webpack-dev-server --hot",
     "build": "yarn webpack -w",
     "serve": "concurrently --kill-others \"yarn build\" \"yarn dev-server\"",
-    "serve:farley": "export PROJECT=farley-banner && concurrently --kill-others \"yarn build\" \"yarn dev-server\"",
-    "serve:color": "export PROJECT=threejs-color-experience && concurrently --kill-others \"yarn build\" \"yarn dev-server\"",
-    "serve:logo": "export PROJECT=farley-logo && concurrently --kill-others \"yarn build\" \"yarn dev-server\""
+    "serve:farley": "export PROJECT=farley-banner && yarn serve",
+    "serve:color": "export PROJECT=threejs-color-experience && yarn serve",
+    "serve:logo": "export PROJECT=farley-logo && yarn serve"
   },
   "license": "MIT",
   "devDependencies": {

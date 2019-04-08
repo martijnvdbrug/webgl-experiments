@@ -55,10 +55,11 @@ export class ColorScene extends Scene {
     this.add(...this.lights);
 
     // Controls
-    const geo = new PlaneGeometry( 5, 20, 32 );
-    geo.rotateX(-1.57079633);
+    const geo = new PlaneGeometry( window.innerWidth, window.innerHeight, 32 );
+    geo.rotateX(Math.PI / 2);
     const material = new MeshBasicMaterial( {color: 0xffff00, side: DoubleSide} );
-    const plane = new Plane();
+    const plane = new Mesh(geo, material);
+    // this.add(plane);
     this.controls = new DragControls(this.meshes, this.camera, plane);
 
     // Grid
