@@ -13,8 +13,11 @@ export class ColorPalette {
   }
 
   initColors(){
-    colors.forEach(color => {
-      this.element.innerHTML += `<li> <i class="large material-icons" style="color:${color.color}">stop</i> ${color.name}</li>`
+    colors.forEach(c => {
+      const li = document.createElement('li');
+      li.innerHTML = `<i class="large material-icons" style="color:${c.color}">stop</i> ${c.name}`;
+      li.addEventListener('click', () => this.canvas.addColor(c.color));
+      this.element.appendChild(li);
     });
   }
 

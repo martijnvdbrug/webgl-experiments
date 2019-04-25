@@ -36,18 +36,6 @@ export class ColorScene extends Scene implements PaletteCanvas {
     this.camera.position.z = 15;
     this.camera.rotation.x = -0.6;
 
-    // this.meshes = MeshManager.createMeshes(LowPoly);
-    //this.meshes = MeshManager.createMeshes(CanRing);
-    // this.meshes = MeshManager.createMeshes(ColorSphere);
-    this.meshes.push(new ColorSphere({
-      color: '#0FFF95',
-      x: -1,
-      y: 0,
-      z: 0
-    }));
-    this.add(...this.meshes);
-
-
     // Lights
     this.lights.push(new AmbientLight(0xffffff, 0.3));
     this.lights.push(new DirectionalLight(0xffffff, 0.7));
@@ -93,7 +81,14 @@ export class ColorScene extends Scene implements PaletteCanvas {
   }
 
   addColor(color: string): void {
-    throw new Error('Method not implemented.');
+    const mesh = new ColorSphere({
+      color: color,
+      x: -1,
+      y: 0,
+      z: 0
+    });
+    this.meshes.push(mesh);
+    this.add(mesh);
   }
 
   removeColor(color: string): boolean {
