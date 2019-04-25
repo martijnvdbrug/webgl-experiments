@@ -12,8 +12,10 @@ import { ColorMesh } from './mesh/color-mesh';
 import { DownloadUtil } from './util/download-util';
 import { ColorSphere } from './mesh/color-sphere';
 import { DragControls } from './controls/drag-controls';
+import { ColorPalette } from './palette/interface/color-palette';
+import { PaletteCanvas } from './palette/palette-canvas';
 
-export class ColorScene extends Scene {
+export class ColorScene extends Scene implements PaletteCanvas {
 
   private readonly renderer: WebGLRenderer;
   private readonly meshes: ColorMesh[] = [];
@@ -24,7 +26,7 @@ export class ColorScene extends Scene {
   raycaster = new Raycaster();
   mouse = new Vector2();
 
-  constructor() {
+  constructor(canvasId: string) {
 
     super();
 
@@ -66,7 +68,7 @@ export class ColorScene extends Scene {
     this.add(new GridHelper(10, 10));
 
     // Render
-    this.renderer = this.getRenderer();
+    this.renderer = this.getRenderer(document.getElementById(canvasId) as HTMLCanvasElement);
     this.render();
   }
 
@@ -80,13 +82,21 @@ export class ColorScene extends Scene {
     // this.meshes.forEach(m => m.rotate(0.01));
   }
 
-  getRenderer(): WebGLRenderer {
+  getRenderer(canvas: HTMLCanvasElement): WebGLRenderer {
     const renderer = new WebGLRenderer({
       antialias: true,
-      canvas: document.getElementById('canvas') as HTMLCanvasElement
+      canvas
     });
     renderer.setClearColor('#464646');
     renderer.setSize(window.innerWidth, window.innerHeight);
     return renderer;
+  }
+
+  addColor(color: string): void {
+    throw new Error('Method not implemented.');
+  }
+
+  removeColor(color: string): boolean {
+    throw new Error("Method not implemented.");
   }
 }

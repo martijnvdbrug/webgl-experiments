@@ -17,16 +17,17 @@ canvas {
     display: block;
 }
 
-.color-pallette {
+#color-palette {
     color: #ffffff;
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: lighter;
     font-size: xx-large;
     white-space: nowrap;
+    line-height: 0.8;
 }
 
 .material-icons {
     line-height: inherit;
     vertical-align: middle;
-    text-shadow: 0px 2px 2px #000000;
+    text-shadow: 0px 2px 4px #000000;
 }
