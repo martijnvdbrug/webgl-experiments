@@ -23,10 +23,9 @@ export class CanRing extends ColorMesh {
     // GeoUtil.jitter(geo, 0.05);
     // geo.computeFlatVertexNormals();
 
-    const material = new MeshPhongMaterial({
+    const material = new MeshLambertMaterial({
       color: options.color,
-      // flatShading: true,
-      shininess: 100
+      flatShading: true
     });
 
     super(geo, material);

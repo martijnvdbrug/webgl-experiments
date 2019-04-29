@@ -17,6 +17,13 @@ export const colors: CanColor[] = [
     code: 'lp-122',
     color: '#EC6E08',
     name: 'Utrect'
-  },
-
+  },{
+    code: 'lp-180',
+    color: '#CDC7ED',
+    name: 'Vilnius'
+  },{
+    code: 'lp-182',
+    color: '#AD81AF',
+    name: 'Malmo'
+  }
 ];

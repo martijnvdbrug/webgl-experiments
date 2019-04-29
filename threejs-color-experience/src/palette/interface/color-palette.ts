@@ -1,25 +1,22 @@
-import { PaletteCanvas } from '../palette-canvas';
 import { colors } from '../colors';
+import { eventBus } from '../../index';
+import { ColorEvents } from '../../events/color-events';
 
 export class ColorPalette {
 
   element: HTMLElement;
-  canvas: PaletteCanvas;
 
-  constructor(elementId: string, canvas: PaletteCanvas) {
+  constructor(elementId: string) {
     this.element = document.getElementById(elementId);
-    this.canvas = canvas;
     this.initColors();
   }
 
-  initColors(){
+  initColors() {
     colors.forEach(c => {
       const li = document.createElement('li');
-      li.innerHTML = `<i class="large material-icons" style="color:${c.color}">stop</i> ${c.name}`;
-      li.addEventListener('click', () => this.canvas.addColor(c.color));
+      li.innerHTML = `<i class="material-icons" style="color:${c.color}">stop</i> ${c.name}`;
+      li.addEventListener('click', () => eventBus.dispatchEvent(new CustomEvent(ColorEvents.AddColorEvent, {detail: {color: c}})));
       this.element.appendChild(li);
     });
   }
-
-
 }

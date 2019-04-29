@@ -1,30 +1,35 @@
 import {
   AmbientLight,
   Camera,
-  DirectionalLight, DoubleSide,
+  DirectionalLight,
+  DoubleSide,
   GridHelper,
-  Light, Mesh, MeshBasicMaterial,
-  PerspectiveCamera, Plane, PlaneGeometry, Raycaster,
-  Scene, Vector2,
+  Light,
+  Mesh,
+  MeshBasicMaterial,
+  PerspectiveCamera,
+  PlaneGeometry,
+  Raycaster,
+  Scene,
+  Vector2,
   WebGLRenderer
 } from 'three';
 import { ColorMesh } from './mesh/color-mesh';
 import { DownloadUtil } from './util/download-util';
-import { ColorSphere } from './mesh/color-sphere';
 import { DragControls } from './controls/drag-controls';
-import { ColorPalette } from './palette/interface/color-palette';
-import { PaletteCanvas } from './palette/palette-canvas';
+import { ColorableInterface } from '../colorable.interface';
+import { CanRing } from './mesh/can-ring';
+import { CanColor } from '../palette/interface/can-color';
 
-export class ColorScene extends Scene implements PaletteCanvas {
+export class ColorScene extends Scene implements ColorableInterface {
 
+  raycaster = new Raycaster();
+  mouse = new Vector2();
   private readonly renderer: WebGLRenderer;
   private readonly meshes: ColorMesh[] = [];
   private readonly camera: Camera;
   private readonly lights: Light[] = [];
   private readonly controls: DragControls;
-
-  raycaster = new Raycaster();
-  mouse = new Vector2();
 
   constructor(canvasId: string) {
 
@@ -45,9 +50,9 @@ export class ColorScene extends Scene implements PaletteCanvas {
     this.add(...this.lights);
 
     // Controls
-    const geo = new PlaneGeometry( window.innerWidth, window.innerHeight, 32 );
+    const geo = new PlaneGeometry(window.innerWidth, window.innerHeight, 32);
     geo.rotateX(Math.PI / 2);
-    const material = new MeshBasicMaterial( {color: 0xffff00, side: DoubleSide} );
+    const material = new MeshBasicMaterial({color: 0xffff00, side: DoubleSide});
     const plane = new Mesh(geo, material);
     // this.add(plane);
     this.controls = new DragControls(this.meshes, this.camera, plane);
@@ -80,9 +85,9 @@ export class ColorScene extends Scene implements PaletteCanvas {
     return renderer;
   }
 
-  addColor(color: string): void {
-    const mesh = new ColorSphere({
-      color: color,
+  addColor(color: CanColor): void {
+    const mesh = new CanRing({
+      color: color.color,
       x: -1,
       y: 0,
       z: 0
@@ -91,7 +96,7 @@ export class ColorScene extends Scene implements PaletteCanvas {
     this.add(mesh);
   }
 
-  removeColor(color: string): boolean {
-    throw new Error("Method not implemented.");
+  removeColor(color: CanColor): void {
+    throw new Error('Method not implemented.');
   }
 }
